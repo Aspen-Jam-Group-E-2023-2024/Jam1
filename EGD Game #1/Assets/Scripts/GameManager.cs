@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     #region Private references
 
-    private GameObject player;
+    public GameObject player;
     private PlayerController pc;
 
     #endregion
@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindWithTag("Player");
         pc = player.GetComponent<PlayerController>();
 
         waveTimer = waveCooldown;

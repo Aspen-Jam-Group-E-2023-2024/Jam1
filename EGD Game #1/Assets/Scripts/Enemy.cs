@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class Enemy : MonoBehaviour, IEnemy
 {
@@ -17,12 +18,12 @@ public class Enemy : MonoBehaviour, IEnemy
 
     private float health;
 
-    #region Private References
-
-    private GameManager gm;
+    #region References
+    
     private Transform player;
     private Rigidbody2D rb;
     private PlayerController pc;
+    private GameManager gm;
 
     #endregion
 
@@ -30,8 +31,8 @@ public class Enemy : MonoBehaviour, IEnemy
 
     private void Start()
     {
-        player = GameObject.FindWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindWithTag("Player").transform;
         gm = GameObject.Find("Game Manager").GetComponent<GameManager>();
         originalColor = gameObject.GetComponent<Renderer>().material.color;
         pc = player.GetComponent<PlayerController>();
