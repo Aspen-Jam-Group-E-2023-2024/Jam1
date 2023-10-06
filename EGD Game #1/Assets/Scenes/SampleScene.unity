@@ -461,7 +461,7 @@ MonoBehaviour:
     m_Bits: 0
   dashKey: 32
   IFrameTime: 0.05
-  startingHealth: 20
+  startingHealth: 50
   damage: 20
   dashForce: 5
   dashCooldown: 0.5
@@ -539,7 +539,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 20
-  attackDamage: 20
   IFrameTime: 0.1
   maxDistDelta: 0.01
   damagedFlashColor: {r: 1, g: 0, b: 0, a: 1}

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class PlayerController : MonoBehaviour
 
     private int health;
 
+    public AudioSource dashSound;
+    [Tooltip("Enter the NAME of the game over screen in the build settings here")] public string gameOverSceneName;
+
 
     #region Private references
 
@@ -44,6 +48,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         mat = GetComponentInChildren<Renderer>().material;
         originalColor = mat.color;
+
+        health = startingHealth;
     }
 
     // Update is called once per frame
@@ -128,6 +134,8 @@ public class PlayerController : MonoBehaviour
         // add force in aiming direction, then check if anything ever hits the collider
         rb.AddForce(aimingDirection * dashForce, ForceMode2D.Impulse);
         
+        dashSound.Play();
+        
         yield return new WaitForSeconds(cooldown);
         
         dashing = false;
@@ -136,11 +144,15 @@ public class PlayerController : MonoBehaviour
     public IEnumerator TakeDamage(int hitDamage)
     {
         health -= hitDamage;
+        
+        Debug.Log("Hit for " + hitDamage + "! Current Health: " + health + ".");
 
         if (health <= 0f)
         {
             Debug.Log("Died!");
             // start game over screen
+            gameObject.SetActive(false);
+            SceneManager.LoadScene(gameOverSceneName);
         }
         
         mat.color = Color.red;

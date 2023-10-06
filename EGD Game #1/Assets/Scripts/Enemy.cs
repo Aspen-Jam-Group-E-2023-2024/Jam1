@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour, IEnemy
 {
     [Header("Stats")] 
     public int startingHealth = 20;
-    public int attackDamage = 20;
+    // public int attackDamage = 20;
     public float IFrameTime = 0.1f;
 
     [Tooltip("This is how fast (distance) the enemy moves per tick")] 
