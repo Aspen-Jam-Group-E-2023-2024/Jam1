@@ -80,6 +80,7 @@ public class Enemy : MonoBehaviour, IEnemy
         
         if (health <= 0)
         {
+            gm.enemiesAlive--;
             Destroy(this.gameObject);
         }
         

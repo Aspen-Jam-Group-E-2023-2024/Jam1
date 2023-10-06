@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public float waveCooldown = 4f;
     [Tooltip("How many enemies spawn per wave")]
     public int howManyEnemiesToSpawn = 5;
+
+    [HideInInspector] public int enemiesAlive;
     // [HideInInspector] public int enemiesKilled = 0;
     // public GameObject[] enemies; // -> for in the event that we want multiple types of enemies
     
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
         waveTimer = waveCooldown;
         timer = 0f;
 
+        enemiesAlive = 0;
         waveRunning = false;
     }
 
@@ -51,7 +54,7 @@ public class GameManager : MonoBehaviour
                 {
                     SpawnEnemy();
                 }
-
+                
                 waveTimer = waveCooldown;
 
                 Debug.Log("Spawned " + howManyEnemiesToSpawn + " enemies");
@@ -67,6 +70,8 @@ public class GameManager : MonoBehaviour
         Vector3 spawnPoint = GetRandomSpawnPoint(spawnRange);
 
         Instantiate(enemyPrefab, spawnPoint, Quaternion.identity);
+
+        enemiesAlive++;
     }
 
     // Get spawn point to spawn enemy
