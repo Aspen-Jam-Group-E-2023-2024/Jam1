@@ -62,6 +62,8 @@ public class GameManager : MonoBehaviour
                 waveRunning = true;
             }
         }
+
+        if (waveRunning && enemiesAlive <= 0) { waveRunning = false; }
     }
     
     // Spawn enemies
